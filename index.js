@@ -1,4 +1,5 @@
 $(document).ready(function () {                 //Getting data from database API
+
     $.ajax({
         url: "https://opendata.rdw.nl/resource/t5pc-eb34.json",
         type: "GET",
@@ -10,6 +11,7 @@ $(document).ready(function () {                 //Getting data from database API
         alert("Retrieved " + data.length + " records from the dataset!");       //creates popup
         console.log(data);          //logs data
     });
+
 });
 
-console.log("hi");      //test for terminal
+console.log("hi");      //tests filt through terminal
