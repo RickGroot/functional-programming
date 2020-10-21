@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "node": "^14.14.0"
+    "node": "^14.14.0",
+    "regex": "^0.1.1"
   }
 }
