@@ -1,14 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/CSS" href="./style.css">
     <title>Clean json data</title>
     <script src="../node_modules/jquery/dist/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="clean.js"></script>
 </head>
+
 <body>
-    
+    <h1>Dit zijn alle hobbies van Dataviz studenten:</h1>
+    <div>
+        <% for (var index = 0; index < data.length; index++) { %>
+        <p><%= data[index] %></p>
+        <% } %>
+    </div>
 </body>
+
 </html>

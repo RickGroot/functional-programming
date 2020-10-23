@@ -1,6 +1,8 @@
 
 const data = require('./dataviz.json');     //Imports json file
-
+const express = require('express');         //use express to render stuff
+const app = express();
+const port = 8080;                          //set up a localhost port
 
 // filtering data
 const filterData = JSON.stringify(data);          //Sets everything in json file to strings
@@ -78,3 +80,15 @@ function getHobbies(answers) {
 };
 
 console.log(allHobbies);    //logs clean data
+
+//render the data
+app
+    .set('view engine', 'ejs')              //initialize ejs
+    .use(express.static('./static'))
+    .use('/', clean);                       //call function clean() when on localhost
+
+function clean(req, res, next) {    
+    res.render('clean.ejs', {data: allHobbies});    //renders clean.ejs, with the data from allHobbies array
+}
+
+app.listen(port, () => console.log(`Example app listening on port ${port}!`));  //puts rendered data at localhost:8080/clean
