@@ -1,3 +1,5 @@
+
+/* -------------------------------------------------------------------------------------------FROM DOCUMENTATION API
 $(document).ready(function () {                 //Getting data from database API
 
     $.ajax({
@@ -15,3 +17,13 @@ $(document).ready(function () {                 //Getting data from database API
 });
 
 console.log("hi");      //tests filt through terminal
+----------------------------------------------------------------------------------------------------------------------*/
+
+let apiData = getData('https://opendata.rdw.nl/resource/t5pc-eb34.json')
+
+function getData(url) {
+    const response = fetch(url);
+    console.log(response);
+    const data = response.json();
+    console.log(data);
+}
