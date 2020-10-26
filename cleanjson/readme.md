@@ -1,0 +1,2 @@
+# Clean a json file
+In deze map ben ik een JSON file gaan opschonen en filteren. De data die hiervoor is gebruikt is van de dataviz enquete. Ik heb deze oefening gedaan door node.js te gebruiken, omdat ik dit makkelijker vond werken, en zo makkelijk de JSON file kan importen. Bij de comments in mijn clean.js bestand staat de code uitgelegd. Het JSON bestand zit niet toegevoegd in dit bestand, omdat dit informatie bevat wat liever niet naar buiten komt.
