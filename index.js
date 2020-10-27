@@ -1,4 +1,3 @@
-
 /* -------------------------------------------------------------------------------------------FROM DOCUMENTATION API
 $(document).ready(function () {                 //Getting data from database API
 
@@ -19,11 +18,30 @@ $(document).ready(function () {                 //Getting data from database API
 console.log("hi");      //tests filt through terminal
 --------------------------------------------------------------------------------------------------------------------*/
 
-let apiData = getData('https://opendata.rdw.nl/resource/t5pc-eb34.json')
+//Source used: Live coding API by Laurens Aarnoudse
+const fetch = require('node-fetch');
+const endpoint = 'https://opendata.rdw.nl/resource/t5pc-eb34.json';
+const selectedColumn = 'areaid';
+
+getData(endpoint)
+.then(result => {
+    return result.json()
+})
+    .then(RDWData => {
+        console.log('all data: ', RDWData);
+        // console.log('one datum: ', RDWData[0]);
+        const areaIdArray = filterData(RDWData, selectedColumn);
+        console.log(areaIdArray);
+    })
 
 function getData(url) {
-    const response = fetch(url);
-    console.log(response);
-    const data = response.json();
-    console.log(data);
+    return fetch(url);
+}
+
+function filterData(dataArray, key) {
+    return dataArray.map(item => item[key])
+}
+
+function compareArray(array1, array2) {
+    return valuesBothPresent;
 }
