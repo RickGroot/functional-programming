@@ -20,12 +20,14 @@ console.log("hi");      //tests filt through terminal
 
 //Source used: Live coding API by Laurens Aarnoudse
 const fetch = require('node-fetch'); //requires fetch library for node.js
-const endpoint = 'https://opendata.rdw.nl/resource/b3us-f26s.json'; //specificaties parkeergebied dataset
-const endpoint2 = 'https://opendata.rdw.nl/resource/t5pc-eb34.json'; //GEO Parkeer Garages dataset
+const endpoint = 'https://opendata.rdw.nl/resource/b3us-f26s.json?$limit=90000'; //specificaties parkeergebied dataset
+const endpoint2 = 'https://opendata.rdw.nl/resource/t5pc-eb34.json?$limit=90000'; //GEO Parkeer Garages dataset
 const selectedColumn = 'maximumvehicleheight';
-const selectedColumn2 = 'areamanagerid'
+const selectedColumn2 = 'usageid';
 
-getData(endpoint) //calls function getData with API link
+
+
+let data1 = getData(endpoint) //calls function getData with API link
     .then(result => { //only continues when data is fetched
         return result.json()
     })
@@ -33,25 +35,31 @@ getData(endpoint) //calls function getData with API link
         // console.log('all data: ', RDWData);
 
         const filteredColumnData = filterData(RDWData, selectedColumn); //calls filterData with API data and column ID
-        // console.log(filteredColumnData);
+        // console.log('From endpoint1 ', filteredColumnData);
 
-        const filteredDataObjects = filterObject(RDWData, selectedColumn); //callsfilterObject with data and column ID
-        // console.log(filteredDataObjects);
+        const filteredDataObjects = filterObjectValue(RDWData, selectedColumn); //callsfilterObject with data and column ID
+        // console.log('From endpoint1 ', filteredDataObjects);
+
+        return filteredDataObjects;
     })
 
-getData(endpoint2) //calls function getData with API link
+let data2 = getData(endpoint2) //calls function getData with API link
     .then(result => { //only continues when data is fetched
         return result.json()
     })
     .then(RDWData => {
-        console.log('all data: ', RDWData);
+        // console.log('all data: ', RDWData);
 
         const filteredColumnData2 = filterData(RDWData, selectedColumn2); //calls filterData with API data and column ID
-        // console.log(filteredColumnData2);
+        // console.log('From endpoint2 ', filteredColumnData2);
 
-        const filteredDataObjects2 = filterObject(RDWData, selectedColumn2); //callsfilterObject with data and column ID
-        // console.log(filteredDataObjects2);
+        const filteredDataObjects2 = filterObjectName(RDWData, selectedColumn2); //callsfilterObject with data and column ID
+        // console.log('From endpoint2 ', filteredDataObjects2);
+
+        return filteredDataObjects2;
     })
+
+compare(data1, data2); //calls compare function
 
 function getData(url) {
     return fetch(url); //fetches data from API url
@@ -68,6 +76,28 @@ function filterData(dataArray, key) {
 // }        
 //code below is simplified version of function above
 
-function filterObject(dataArray, key) {
+function filterObjectValue(dataArray, key) {
     return dataArray.filter(item => item[key] > 0); //returns only objects with a key-value higher than 0
+}
+
+function filterObjectName(dataArray, key) {
+    return dataArray.filter(item => item[key] === 'GARAGEP'); //returns only objects with a key-value higher than 0
+}
+
+async function compare(array1, array2) { //async function that awaits the promised arrays
+    const result1 = await array1;
+    const result2 = await array2;
+
+    // console.log(result1);
+    console.log(result1);
+
+    let equalData = isEqual(result1, result2);
+
+    console.log(equalData);
+}
+
+function isEqual (array1, array2) {
+    if (Object.values(array1).indexOf(array2.areamanagerid) > -1) {
+        console.log('whut dit werkt?')
+    }
 }
