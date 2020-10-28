@@ -14,3 +14,19 @@ let ID_info = {
         course: "Tech"
 };
 ```
+
+# Research topic
+Which cars can and cannot be parked in different parking garages in the Netherlands?
+
+## Required variables
+* ID of parking space
+* Location of parking garages
+* Additional information of parking garages
+* Maximumheight
+* Data of car types, like height and/or type
+
+## Expectations
+I think that lots of parking garages are perfectly compatible with most cars. If you have a van there could be a problem in some parking garages. 
+
+# Concept
+A map with all parking garages, with information about capacity and maximum vehicle heights. You can also filter the garages by filtering on your car height or car type.
