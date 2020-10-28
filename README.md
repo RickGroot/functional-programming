@@ -28,7 +28,8 @@ Are there many parking garages outside cities?
 * Location of parking garages
 * Capacity and other garage information, for better visualisation
 * Maximumheight of parking garage
-* Data of car types, like height and/or type  
+* Data of car types, like height and/or type    
+
 All this data is from RDW datasets. For location of parking garages I use [GEO Parkeer Garages](https://opendata.rdw.nl/Parkeren/GEO-Parkeer-Garages/t5pc-eb34), and for capacity and maximumvehicleheight I use [Open Data Parkeren: SPECIFICATIES PARKEERGEBIED](https://opendata.rdw.nl/Parkeren/Open-Data-Parkeren-SPECIFICATIES-PARKEERGEBIED/b3us-f26s). The datasets I am going to use for the car data are still unknown.
 
 ## Expectations
