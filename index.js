@@ -24,18 +24,19 @@ let data1 = getData(endpoint) //calls function getData with API link
 
 let data2 = getData(endpoint2) //calls function getData with API link
     .then(result => { //only continues when data is fetched
-        return result.json()
+        return result.json()    //puts result into JSON
     })
     .then(RDWData => {
-        // console.log('all data: ', RDWData);
+        console.log('all data: ', RDWData);
+        return RDWData;
 
-        const filteredColumnData2 = filterData(RDWData, selectedColumn2); //calls filterData with API data and column ID
+        // const filteredColumnData2 = filterData(RDWData, selectedColumn2); //calls filterData with API data and column ID
         // console.log('From endpoint2 ', filteredColumnData2);
 
-        const filteredDataObjects2 = filterObjectName(RDWData, selectedColumn2); //callsfilterObject with data and column ID
+        // const filteredDataObjects2 = filterObjectName(RDWData, selectedColumn2); //callsfilterObject with data and column ID
         // console.log('From endpoint2 ', filteredDataObjects2);
 
-        return filteredDataObjects2;
+        // return filteredDataObjects2;
     })
 
 compare(data1, data2); //calls compare function
@@ -47,13 +48,6 @@ function getData(url) {
 function filterData(dataArray, key) {
     return dataArray.map(item => item[key]); //filters column data from array
 }
-
-// function filterObject(dataArray, key) {
-//     return filteredObjects = dataArray.filter(function (entry) {  //returns filtered data array  
-//         return entry[key] > 0;              //returns only objects with a key-value higher than 0
-//     })
-// }        
-//code below is simplified version of function above
 
 function filterObjectValue(dataArray, key) {
     return dataArray.filter(item => item[key] > 0); //returns only objects with a key-value higher than 0
@@ -67,16 +61,29 @@ async function compare(array1, array2) { //async function that awaits the promis
     const result1 = await array1;
     const result2 = await array2;
 
+    result1.forEach(itemArr1 => {
+        console.log(itemArr1.areaid);
+        // if (itemArr1.areaid === result2.forEach(thing => {return thing.areaid})) {
+        //     console.log('test 1 works')
+        // }
+
+        // for (i = 0; i > result2.length; i++) {
+        //     if (itemArr1.areaid === result2[i].areaid) {
+        //         console.log('test 2 works')
+        //     }
+        //     console.log(result2[i].areaid)
+        // }
+
+        result2.forEach(itemArr2 => {
+            if (itemArr1.areaid === itemArr2.areaid) {
+                console.log('^^^ this one, ' + itemArr1.areaid + ' is double ^^^')
+            }
+        })
+    })
     // console.log(result1);
-    console.log(result1);
+    // console.log(result1);
 
-    let equalData = isEqual(result1, result2);
+    // let equalData = isEqual(result1, result2);
 
-    console.log(equalData);
-}
-
-function isEqual (array1, array2) {
-    if (Object.values(array1).indexOf(array2.areamanagerid) > -1) {
-        console.log('whut dit werkt?')
-    }
+    // console.log(equalData);
 }
