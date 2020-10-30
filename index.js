@@ -27,7 +27,7 @@ let data2 = getData(endpoint2) //calls function getData with API link
         return result.json() //puts result into JSON
     })
     .then(RDWData => {
-        console.log('all data: ', RDWData);
+        // console.log('all data: ', RDWData);
         return RDWData;
 
         // const filteredColumnData2 = filterData(RDWData, selectedColumn2); //calls filterData with API data and column ID
@@ -39,7 +39,8 @@ let data2 = getData(endpoint2) //calls function getData with API link
         // return filteredDataObjects2;
     })
 
-compare(data1, data2); //calls compare function
+let cleanedDataObjects = compare(data1, data2).then(result => console.log(result)); //calls compare function, and logs result when ready
+
 
 function getData(url) {
     return fetch(url); //fetches data from API url
@@ -60,15 +61,30 @@ function filterObjectName(dataArray, key) {
 async function compare(array1, array2) { //async function that awaits the promised arrays
     const result1 = await array1;
     const result2 = await array2;
+    let compiled = [];
 
     result1.forEach(itemArr1 => {
-        console.log(itemArr1.areaid);
-
+        
         result2.forEach(itemArr2 => {
-
+            
             if (itemArr1.areaid === itemArr2.areaid) {
-                console.log('^^^ this one, ' + itemArr1.areaid + ', is double ^^^')
+
+                let location = [itemArr2.location.latitude, itemArr2.location.longitude];
+
+                compiled.push({
+                    areamanagerId: itemArr1.areamanagerid,
+                    areaId: itemArr1.areaid,
+                    capacity: itemArr1.capacity,
+                    chargingpointCapacity: itemArr1.chargingpointcapacity,
+                    disabledAccess: itemArr1.disabledaccess,
+                    maximumVehicleHeight: itemArr1.maximumvehicleheight,
+                    limitedAccess: itemArr1.limitedaccess,
+                    location: location,
+                    areaDesc: itemArr2.areadesc
+                });
             }
         })
     })
+
+    return compiled;
 }
