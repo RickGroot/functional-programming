@@ -39,3 +39,6 @@ I think there are more low parking garages in the older cities, because back the
 
 # Concept
 A map with all parking garages, with information about capacity and maximum vehicle heights. You can also filter the garages by filtering on your car height or car type.
+
+## License
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)

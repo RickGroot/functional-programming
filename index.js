@@ -24,7 +24,7 @@ let data1 = getData(endpoint) //calls function getData with API link
 
 let data2 = getData(endpoint2) //calls function getData with API link
     .then(result => { //only continues when data is fetched
-        return result.json()    //puts result into JSON
+        return result.json() //puts result into JSON
     })
     .then(RDWData => {
         console.log('all data: ', RDWData);
@@ -63,27 +63,12 @@ async function compare(array1, array2) { //async function that awaits the promis
 
     result1.forEach(itemArr1 => {
         console.log(itemArr1.areaid);
-        // if (itemArr1.areaid === result2.forEach(thing => {return thing.areaid})) {
-        //     console.log('test 1 works')
-        // }
-
-        // for (i = 0; i > result2.length; i++) {
-        //     if (itemArr1.areaid === result2[i].areaid) {
-        //         console.log('test 2 works')
-        //     }
-        //     console.log(result2[i].areaid)
-        // }
 
         result2.forEach(itemArr2 => {
+
             if (itemArr1.areaid === itemArr2.areaid) {
-                console.log('^^^ this one, ' + itemArr1.areaid + ' is double ^^^')
+                console.log('^^^ this one, ' + itemArr1.areaid + ', is double ^^^')
             }
         })
     })
-    // console.log(result1);
-    // console.log(result1);
-
-    // let equalData = isEqual(result1, result2);
-
-    // console.log(equalData);
 }
