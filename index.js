@@ -59,19 +59,19 @@ function filterObjectName(dataArray, key) {
 }
 
 async function compare(array1, array2) { //async function that awaits the promised arrays
-    const result1 = await array1;
+    const result1 = await array1;       //waits for incoming data
     const result2 = await array2;
     let compiled = [];
 
-    result1.forEach(itemArr1 => {
+    result1.forEach(itemArr1 => {       //loops over each item in result1
         
-        result2.forEach(itemArr2 => {
+        result2.forEach(itemArr2 => {   //loops over each item in result2 to check same area id's
             
-            if (itemArr1.areaid === itemArr2.areaid) {
+            if (itemArr1.areaid === itemArr2.areaid) {  
 
-                let location = [itemArr2.location.latitude, itemArr2.location.longitude];
+                let location = [itemArr2.location.latitude, itemArr2.location.longitude];   //saves location to an array
 
-                compiled.push({
+                compiled.push({             //pushes an object into array 'compiled'
                     areamanagerId: itemArr1.areamanagerid,
                     areaId: itemArr1.areaid,
                     capacity: itemArr1.capacity,
